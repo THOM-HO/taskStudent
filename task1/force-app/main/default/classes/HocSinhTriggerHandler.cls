@@ -50,17 +50,21 @@ public class HocSinhTriggerHandler {
        listTrigger.addAll(listTriggerOld);
        updateClass(listTrigger); 
 
-       //
-       List<HocSinh__c> listStudent= new List<HocSinh__c>(); 
-       for(HocSinh__c item: list_trigger_new){
-        HocSinh__c student = new HocSinh__c();
-        student.Id= item.Id;
-        student.XepLoai__c = HocSinhHandler.classification(item);
-        listStudent.add(student);
-     } 
-     upsert listStudent;
-       
-     }
+      if(HocSinhHandler.flag){
+        HocSinhHandler.flag = false;
+        List<HocSinh__c> listStudent= new List<HocSinh__c>(); 
+        for(HocSinh__c item: list_trigger_new){
+            HocSinh__c student = new HocSinh__c();
+            student.Id= item.Id;
+            student.XepLoai__c = HocSinhHandler.classification(item);
+            listStudent.add(student);
+        } 
+        if(!listStudent.isEmpty()){
+                update listStudent;
+            HocSinhHandler.flag = true;
+        }
+    }
+}
     
     public static void onAfterDelete(List<HocSinh__c> list_trigger_old){
      updateClass(list_trigger_old);

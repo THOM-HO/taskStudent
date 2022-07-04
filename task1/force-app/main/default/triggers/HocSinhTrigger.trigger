@@ -3,10 +3,7 @@ trigger HocSinhTrigger on HocSinh__c (before delete, before insert, before updat
     if (Trigger.isBefore) {
         
         if (Trigger.isInsert) {
-            List<HocSinh__c> hs= new List<HocSinh__c>();
-            for(HocSinh__c item : Trigger.new ){
-                hs.add(item);
-            }
+
               HocSinhTriggerHandler.onBeforeInsert(Trigger.new);
         }    
      }

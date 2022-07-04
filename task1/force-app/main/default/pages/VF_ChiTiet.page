@@ -3,7 +3,7 @@
     <apex:stylesheet value="{!$Resource.ChiTietCSS}" />
     <!-- PAGE CONTENT -->
     <apex:form styleClass="form">
-        <apex:pageBlock>
+        <apex:pageBlock >
             <apex:pageBlockSection columns="1">
                 <apex:panelGrid cellspacing="5" styleClass="wrap" columns="4" cellpadding="4" width="400vw">
                     <apex:commandLink action="{!back}" value="Quay lại" styleClass="theButton" />
